@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="css/custom.css">
 
     <!-- For syntax highlighting -->
-    $if(highlight-style)$
-    <link rel="stylesheet" href="lib/css/$highlight-style$.css">
-    $else$
-    <link rel="stylesheet" href="lib/css/zenburn.css">
+    $if(highlighting-css)$
+    <style type="text/css">
+      $highlighting-css$
+    </style>
     $endif$
 
 
@@ -106,7 +106,6 @@
         { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
         { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
         { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
         { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
