@@ -13,7 +13,12 @@
     font-weight: 100;
 }
 
-.reveal.slide .slides p,
+.reveal.slide .slides p {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 200;
+    text-align: justify;
+}
+
 .reveal.slide .slides a,
 .reveal.slide .slides section {
     font-family: "Source Sans Pro", sans-serif;
