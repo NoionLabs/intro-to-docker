@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Introduction To Docker</title>
+    <meta name="description" content="Introduction To Docker">
+
+        <meta name="author" content="Jordan Schatz" />
+    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+        <link rel="stylesheet" type="text/css" media="all"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,200italic,400italic,700italic" >
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- For syntax highlighting -->
+        <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+      td.sourceCode { padding-left: 5px; }
+      pre, code { color: #cccccc; background-color: #303030; }
+      code > span.kw { color: #f0dfaf; } /* Keyword */
+      code > span.dt { color: #dfdfbf; } /* DataType */
+      code > span.dv { color: #dcdccc; } /* DecVal */
+      code > span.bn { color: #dca3a3; } /* BaseN */
+      code > span.fl { color: #c0bed1; } /* Float */
+      code > span.ch { color: #dca3a3; } /* Char */
+      code > span.st { color: #cc9393; } /* String */
+      code > span.co { color: #7f9f7f; } /* Comment */
+      code > span.ot { color: #efef8f; } /* Other */
+      code > span.al { color: #ffcfaf; } /* Alert */
+      code > span.fu { color: #efef8f; } /* Function */
+      code > span.er { color: #c3bf9f; } /* Error */
+      code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+      code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+      code > span.sc { color: #dca3a3; } /* SpecialChar */
+      code > span.vs { color: #cc9393; } /* VerbatimString */
+      code > span.ss { color: #cc9393; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { } /* Variable */
+      code > span.cf { color: #f0dfaf; } /* ControlFlow */
+      code > span.op { color: #f0efd0; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+      code > span.at { } /* Attribute */
+      code > span.do { color: #7f9f7f; } /* Documentation */
+      code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+      code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+      code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+    </style>
+    
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' +
+                                                    ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) +
+                                                    '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+      </head>
+
+  <body>
+    
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <h1>Introduction To Docker</h1>
+          <h3>Jordan Schatz</h3>
+          <p>
+            <h4>Thursday, 27. October 2016</h4>
+          </p>
+        </section>
+
+        
+        <section id="about-the-slides" class="level2">
+        <h2>About the slides</h2>
+        <p>These slides are more cliff notes then presentation. Their purpose is simply to be faster than whiteboarding. This will be an interactive session, and we will be jumping between to the command line a lot. If you would like a copy of the slides to follow along with you clone a copy from:</p>
+        <p><a href="https://github.com/NoionLabs/intro-to-docker.git" class="uri">https://github.com/NoionLabs/intro-to-docker.git</a></p>
+        </section>
+        <section id="containers-vs-vms" class="level2">
+        <h2>Containers vs VMs</h2>
+        <ul>
+        <li>Hardware ⟶ VMs ⟶ Containers</li>
+        </ul>
+        </section>
+        <section id="docker-engine-docker-cli" class="level2">
+        <h2>Docker Engine &amp; Docker CLI</h2>
+        <section id="section" class="level3">
+        <h3> </h3>
+        </section>
+        <section id="dockerfiles-and-the-registry" class="level3">
+        <h3>Dockerfiles and the registry</h3>
+        </section>
+        <section id="what-is-a-docker-image-why-are-they" class="level3">
+        <h3>What is a docker image / why are they?</h3>
+        </section>
+        <section id="different-base-oss" class="level3">
+        <h3>Different Base OS's</h3>
+        <ul>
+        <li><a href="https://hub.docker.com/_/ubuntu/">Ubuntu</a></li>
+        <li><a href="https://hub.docker.com/_/centos/">CentOS</a></li>
+        <li><a href="https://hub.docker.com/_/debian/">Debian</a></li>
+        <li><a href="https://hub.docker.com/_/alpine/">Alpine</a></li>
+        <li><a href="https://hub.docker.com/_/busybox/">Busybox</a></li>
+        </ul>
+        </section>
+        <section id="or-jump-straight-to-an-application-or-stack" class="level3">
+        <h3><em>or</em> jump straight to an application or stack</h3>
+        <ul>
+        <li><a href="https://hub.docker.com/_/php/">PHP</a></li>
+        <li><a href="https://hub.docker.com/_/node/">NodeJS</a></li>
+        <li><a href="https://hub.docker.com/_/postgres/">PostgreSQL</a></li>
+        <li><em>etc</em></li>
+        </ul>
+        </section>
+        <section id="scratch-image-and-minimal-images" class="level3">
+        <h3>Scratch image and minimal images</h3>
+        <div class="sourceCode"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span class="kw">FROM</span> scratch</code></pre></div>
+        <p><em>or</em></p>
+        <center>
+        See the Alpine based images (ie <a href="https://hub.docker.com/r/mhart/alpine-node/">mhart/node</a> )
+        </center>
+        </section>
+        <section id="dockerfile-context" class="level3">
+        <h3>Dockerfile Context</h3>
+        </section>
+        <section id="client-server-model" class="level3">
+        <h3>Client server model</h3>
+        </section>
+        <section id="image-inheritance" class="level3">
+        <h3>Image inheritance</h3>
+        </section>
+        <section id="hacks-the-good-kind" class="level3">
+        <h3>&quot;Hacks&quot; (the good kind)</h3>
+        <ul>
+        <li>Sharing image layers</li>
+        <li>Context free images</li>
+        <li>.dockerignore</li>
+        </ul>
+        </section>
+        <section id="dockerfiles-are-portable" class="level3">
+        <h3>Dockerfiles are portable</h3>
+        <ul>
+        <li>Any machine should be able to build them.</li>
+        <li>The registry can build them for you</li>
+        </ul>
+        </section>
+        <section id="the-short-list-of-dockerfile-commands" class="level3">
+        <h3>The short list of Dockerfile commands</h3>
+        <ul>
+        <li>FROM</li>
+        <li>MAINTAINER</li>
+        <li>RUN</li>
+        <li>ADD/COPY*</li>
+        <li>WORKDIR</li>
+        <li>CMD</li>
+        <li>ENV</li>
+        </ul>
+        </section>
+        <section id="a-note-about-addcopy" class="level3">
+        <h3>A note about Add/Copy</h3>
+        <p>Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That’s because it’s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.</p>
+        <p><a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#/add-or-copy">See docker best practice docs →</a></p>
+        </section>
+        </section>
+        <section id="docker-is-like-git" class="level2">
+        <h2>Docker is like git</h2>
+        <section id="what-is-a-repository" class="level3">
+        <h3>What is a repository?</h3>
+        <center>
+        REPOSITORY / IMAGE : TAG
+        </center>
+        </section>
+        <section id="docker-pull" class="level3">
+        <h3>Docker Pull</h3>
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> pull alpine:3.4</code></pre></div>
+        </section>
+        <section id="docker-commit" class="level3">
+        <h3>Docker Commit</h3>
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -it alpine:3.4 sh
+        <span class="co"># Edit the image (suggestion: rm -rf /)</span>
+        <span class="kw">docker</span> commit CONTAINER-HASH bad-idea
+        <span class="kw">docker</span> images <span class="kw">|</span> <span class="kw">grep</span> bad-idea</code></pre></div>
+        </section>
+        <section id="docker-push" class="level3">
+        <h3>Docker Push</h3>
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> push REPOSITORY-NAME</code></pre></div>
+        </section>
+        <section id="docker-tag" class="level3">
+        <h3>Docker Tag</h3>
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> tag bad-idea bad-idea:v3
+        <span class="kw">docker</span> images <span class="kw">|</span> <span class="kw">grep</span> bad-idea</code></pre></div>
+        </section>
+        </section>
+        <section id="runtime-config" class="level2">
+        <h2>Runtime Config</h2>
+        <section id="factor-app-pattern" class="level3">
+        <h3>12 Factor App Pattern</h3>
+        <center>
+        <a href="https://12factor.net/">12Factor.net</a>
+        </center>
+        </section>
+        <section id="environment-variables" class="level3">
+        <h3>Environment Variables</h3>
+        <ul>
+        <li>Why is this a good idea again?</li>
+        <li><em>Demo</em></li>
+        </ul>
+        </section>
+        <section id="level-up-with-docker-compose" class="level3">
+        <h3>Level up with Docker Compose</h3>
+        <p>Ok, So we are getting too many commandline arguments to remember, now what?</p>
+        </section>
+        <section id="docker-compose" class="level3">
+        <h3>Docker Compose</h3>
+        </section>
+        <section id="its-yaml-whats-yaml-its-json..." class="level3">
+        <h3>It's YAML (Whats YAML?, it's JSON...)</h3>
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">python</span> -c <span class="st">&#39;import sys, yaml, json;</span>
+        <span class="st">json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)&#39;</span> \
+                   <span class="kw">&lt;</span> docker-compose.yml</code></pre></div>
+        </section>
+        <section id="docker-compose-file-v1-vs-v2" class="level3">
+        <h3>Docker-compose file v1 vs v2</h3>
+        </section>
+        <section id="multi-container-setups" class="level3">
+        <h3>Multi-Container Setups</h3>
+        <center>
+        See examples/compose-example/docker-compose.yml
+        </center>
+        </section>
+        <section id="external-networking-links" class="level3">
+        <h3>External Networking Links</h3>
+        <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">ports:</span>
+          <span class="kw">-</span> <span class="st">&quot;outside:inside&quot;</span>
+          <span class="kw">-</span> <span class="st">&quot;80:80&quot;</span></code></pre></div>
+        </section>
+        <section id="inter-container-networking" class="level3">
+        <h3>Inter-container networking</h3>
+        <center>
+        It's simple: use DNS <br> See examples/compose-example/dockerfiles/proxy/default.conf
+        </center>
+        </section>
+        </section>
+        <section id="volumes" class="level2">
+        <h2>Volumes</h2>
+        <section id="dev-time" class="level3">
+        <h3>Dev time</h3>
+        </section>
+        <section id="prduction-time" class="level3">
+        <h3>Prduction time</h3>
+        <p>Limit their use, but it's ok if you do use it...</p>
+        </section>
+        </section>
+        <section id="bits-n-pieces" class="level2">
+        <h2>Bits n Pieces</h2>
+        <section id="docker-machine" class="level3">
+        <h3>Docker Machine</h3>
+        <ul>
+        <li>Handles provisioning</li>
+        <li>Makes it easy to switch between machines</li>
+        <li><a href="https://www.npmjs.com/package/machine-share">Machine Export</a></li>
+        </ul>
+        </section>
+        <section id="logging" class="level3">
+        <h3>Logging</h3>
+        <ul>
+        <li>json-file</li>
+        <li>syslog</li>
+        <li>journald</li>
+        <li>gelf</li>
+        <li>fluentd</li>
+        <li>awslogs</li>
+        <li>splunk</li>
+        <li>etwlogs</li>
+        <li>gcplogs</li>
+        <li>...</li>
+        </ul>
+        <aside class="notes">
+        Demo logging locally <br /> Demo logging on Bobosales <br /> Remember -f
+        </aside>
+        </section>
+        <section id="stats" class="level3">
+        <h3>Stats</h3>
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> stats</code></pre></div>
+        </section>
+        <section id="fancier-monitoring" class="level3">
+        <h3>Fancier Monitoring</h3>
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run \
+          --volume=/:/rootfs:ro \
+          --volume=/var/run:/var/run:rw \
+          --volume=/sys:/sys:ro \
+          --volume=/var/lib/docker/:/var/lib/docker:ro \
+          --publish=8080:8080 \
+          --detach=true \
+          --name=cadvisor \
+          google/cadvisor:latest</code></pre></div>
+        </section>
+        </section>
+        <section id="what-this-means-for-application-architecture" class="level2">
+        <h2>What this means for Application Architecture</h2>
+        <ol type="1">
+        <li>Microservices</li>
+        <li>Add-on services (PostgREST, Varnish, etc).</li>
+        </ol>
+        <section id="and-for-dev" class="level3">
+        <h3>And for Dev</h3>
+        <p>One command, to setup the dev environment, no matter hard complicated, no matter what project you are on, no matter what platform you are on: <code>docker-compose up</code></p>
+        </section>
+        <section id="and-for-ops" class="level3">
+        <h3>And for Ops</h3>
+        <ol type="1">
+        <li>Immutable Infrastructure</li>
+        <li>Phoenix Servers ( <a href="https://www.youtube.com/watch?v=ueAef9tNUck">Video Martin Fowler - Infrastructure As Code</a> )</li>
+        <li>Canary releases</li>
+        </ol>
+        </section>
+        </section>
+        <section id="scale-up" class="level2">
+        <h2>Scale <strong>UP</strong></h2>
+        <ol type="1">
+        <li>Docker Swarm</li>
+        <li>Kubernetes</li>
+        <li>Triton</li>
+        <li>Many more: AWS container services, Mesos, DC/OS, SmartOS etc.</li>
+        </ol>
+        </section>
+      </div>
+
+      <script src="lib/js/head.min.js"></script>
+      <script src="js/reveal.js"></script>
+
+      <script>
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+
+        // available themes are in /css/theme
+                theme: Reveal.getQueryHash().theme || 'simple',
+        
+        // default/cube/page/concave/zoom/linear/fade/none
+                transition: Reveal.getQueryHash().transition || 'slide',
+        
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+        });
+
+      </script>
+
+  </body>
+</html>
