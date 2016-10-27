@@ -7,13 +7,50 @@
 These slides are more cliff notes then presentation. Their purpose is simply to
 be faster than whiteboarding. This will be an interactive session, and we will
 be jumping between to the command line a lot. If you would like a copy of the
-slides to follow along with you clone a copy from:
+slides to follow along with you can clone a copy from:
 
 [https://github.com/NoionLabs/intro-to-docker.git](https://github.com/NoionLabs/intro-to-docker.git)
 
 ## Containers vs VMs
 
-- Hardware ⟶ VMs ⟶ Containers
+### Hardware ⟶ VMs ⟶ Containers
+
+### Why
+
+- VMs require pre-allocation of resources
+- VMs can't scale dynamically
+- VMs take much longer to start (30 secs vs milisecond)
+- Performance
+
+### An aside on performance*
+
+- Google runs _everything_ in containers.
+- Overhead (vs baremetal is negligible)
+- Some things run _faster_ in containers.
+
+<br>
+<br>
+<center>
+<small>
+*Docker for Mac / Docker for Windows _do_ have performance issues...
+</small>
+</center>
+
+### Docker is more than Containers
+
+- Image Spec
+- Layered Filesystem
+- Software defined networking
+- Containers
+- Lots of tools / tooling / an "ecosystem" + services
+
+### Other implementations
+
+- rkt/rocket
+- Solaris Zones
+- BSD's docker port
+- illumos's alternative linux container + docker implementation
+- A possible future VMWare implementation running directly under a hypervisor.
 
 ## Docker Engine & Docker CLI
 
@@ -101,6 +138,7 @@ docker pull alpine:3.4
 ### Docker Commit
 
 ```bash
+
 docker run -it alpine:3.4 sh
 # Edit the image (suggestion: rm -rf /)
 docker commit CONTAINER-HASH bad-idea
@@ -116,6 +154,7 @@ docker push REPOSITORY-NAME
 ### Docker Tag
 
 ```bash
+
 docker tag bad-idea bad-idea:v3
 docker images | grep bad-idea
 ```
@@ -135,6 +174,7 @@ docker images | grep bad-idea
 _Demo_
 
 ```bash
+
 docker build -t demo:sample-app .
 docker run -t -p 80:8080 -e MESSAGE=stranger demo:sample-app npm start
 ```
@@ -189,7 +229,7 @@ volumes:
 ### Production time
 
 <center>
-Limit their use, but it's ok if you do use it...
+Limit their use, but it's ok if you have to...
 </center>
 
 ## Bits n Pieces
@@ -239,21 +279,22 @@ docker run \
   google/cadvisor:latest
 ```
 
-## What this means for Application Architecture
+## What this means for:
 
-1. Microservices
-2. Add-on services (PostgREST, Varnish, etc).
+### Application Architecture
+- Microservices
+- Add-on services (PostgREST, Varnish, etc).
 
-### And for Dev
+### Development
 
 One command, to setup the dev environment, no matter hard complicated, no matter
 what project you are on, no matter what platform you are on: `docker-compose up`
 
-### And for Ops
+### Ops
 
-1. Immutable Infrastructure
-2. Phoenix Servers ( [Video Martin Fowler - Infrastructure As Code](https://www.youtube.com/watch?v=ueAef9tNUck) )
-3. Canary releases
+- Immutable Infrastructure
+- Phoenix Servers ( [Video Martin Fowler - Infrastructure As Code](https://www.youtube.com/watch?v=ueAef9tNUck) )
+- Canary releases
 
 ## Scale **UP**
 

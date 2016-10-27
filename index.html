@@ -87,14 +87,55 @@
         
         <section id="about-the-slides" class="level2">
         <h2>About the slides</h2>
-        <p>These slides are more cliff notes then presentation. Their purpose is simply to be faster than whiteboarding. This will be an interactive session, and we will be jumping between to the command line a lot. If you would like a copy of the slides to follow along with you clone a copy from:</p>
+        <p>These slides are more cliff notes then presentation. Their purpose is simply to be faster than whiteboarding. This will be an interactive session, and we will be jumping between to the command line a lot. If you would like a copy of the slides to follow along with you can clone a copy from:</p>
         <p><a href="https://github.com/NoionLabs/intro-to-docker.git" class="uri">https://github.com/NoionLabs/intro-to-docker.git</a></p>
         </section>
         <section id="containers-vs-vms" class="level2">
         <h2>Containers vs VMs</h2>
+        <section id="hardware-vms-containers" class="level3">
+        <h3>Hardware ⟶ VMs ⟶ Containers</h3>
+        </section>
+        <section id="why" class="level3">
+        <h3>Why</h3>
         <ul>
-        <li>Hardware ⟶ VMs ⟶ Containers</li>
+        <li>VMs require pre-allocation of resources</li>
+        <li>VMs can't scale dynamically</li>
+        <li>VMs take much longer to start (30 secs vs milisecond)</li>
+        <li>Performance</li>
         </ul>
+        </section>
+        <section id="an-aside-on-performance" class="level3">
+        <h3>An aside on performance*</h3>
+        <ul>
+        <li>Google runs <em>everything</em> in containers.</li>
+        <li>Overhead (vs baremetal is negligible)</li>
+        <li>Some things run <em>faster</em> in containers.</li>
+        </ul>
+        <br> <br>
+        <center>
+        <small> *Docker for Mac / Docker for Windows <em>do</em> have performance issues... </small>
+        </center>
+        </section>
+        <section id="docker-is-more-than-containers" class="level3">
+        <h3>Docker is more than Containers</h3>
+        <ul>
+        <li>Image Spec</li>
+        <li>Layered Filesystem</li>
+        <li>Software defined networking</li>
+        <li>Containers</li>
+        <li>Lots of tools / tooling / an &quot;ecosystem&quot; + services</li>
+        </ul>
+        </section>
+        <section id="other-implementations" class="level3">
+        <h3>Other implementations</h3>
+        <ul>
+        <li>rkt/rocket</li>
+        <li>Solaris Zones</li>
+        <li>BSD's docker port</li>
+        <li>illumos's alternative linux container + docker implementation</li>
+        <li>A possible future VMWare implementation running directly under a hypervisor.</li>
+        </ul>
+        </section>
         </section>
         <section id="docker-engine-docker-cli" class="level2">
         <h2>Docker Engine &amp; Docker CLI</h2>
@@ -190,7 +231,8 @@
         </section>
         <section id="docker-commit" class="level3">
         <h3>Docker Commit</h3>
-        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -it alpine:3.4 sh
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+        <span class="kw">docker</span> run -it alpine:3.4 sh
         <span class="co"># Edit the image (suggestion: rm -rf /)</span>
         <span class="kw">docker</span> commit CONTAINER-HASH bad-idea
         <span class="kw">docker</span> images <span class="kw">|</span> <span class="kw">grep</span> bad-idea</code></pre></div>
@@ -201,7 +243,8 @@
         </section>
         <section id="docker-tag" class="level3">
         <h3>Docker Tag</h3>
-        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> tag bad-idea bad-idea:v3
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+        <span class="kw">docker</span> tag bad-idea bad-idea:v3
         <span class="kw">docker</span> images <span class="kw">|</span> <span class="kw">grep</span> bad-idea</code></pre></div>
         </section>
         </section>
@@ -219,7 +262,8 @@
         <li>Why is this a good idea again?</li>
         </ul>
         <p><em>Demo</em></p>
-        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> build -t demo:sample-app .
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+        <span class="kw">docker</span> build -t demo:sample-app .
         <span class="kw">docker</span> run -t -p 80:8080 -e MESSAGE=stranger demo:sample-app npm start</code></pre></div>
         </section>
         <section id="level-up-with-docker-compose" class="level3">
@@ -268,7 +312,7 @@
         <section id="production-time" class="level3">
         <h3>Production time</h3>
         <center>
-        Limit their use, but it's ok if you do use it...
+        Limit their use, but it's ok if you have to...
         </center>
         </section>
         </section>
@@ -317,23 +361,26 @@
           google/cadvisor:latest</code></pre></div>
         </section>
         </section>
-        <section id="what-this-means-for-application-architecture" class="level2">
-        <h2>What this means for Application Architecture</h2>
-        <ol type="1">
+        <section id="what-this-means-for" class="level2">
+        <h2>What this means for:</h2>
+        <section id="application-architecture" class="level3">
+        <h3>Application Architecture</h3>
+        <ul>
         <li>Microservices</li>
         <li>Add-on services (PostgREST, Varnish, etc).</li>
-        </ol>
-        <section id="and-for-dev" class="level3">
-        <h3>And for Dev</h3>
+        </ul>
+        </section>
+        <section id="development" class="level3">
+        <h3>Development</h3>
         <p>One command, to setup the dev environment, no matter hard complicated, no matter what project you are on, no matter what platform you are on: <code>docker-compose up</code></p>
         </section>
-        <section id="and-for-ops" class="level3">
-        <h3>And for Ops</h3>
-        <ol type="1">
+        <section id="ops" class="level3">
+        <h3>Ops</h3>
+        <ul>
         <li>Immutable Infrastructure</li>
         <li>Phoenix Servers ( <a href="https://www.youtube.com/watch?v=ueAef9tNUck">Video Martin Fowler - Infrastructure As Code</a> )</li>
         <li>Canary releases</li>
-        </ol>
+        </ul>
         </section>
         </section>
         <section id="scale-up" class="level2">
