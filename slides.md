@@ -120,7 +120,7 @@ docker tag bad-idea bad-idea:v3
 docker images | grep bad-idea
 ```
 
-## Runtime Config
+## Runtime Configuration
 
 ### 12 Factor App Pattern
 
@@ -131,7 +131,13 @@ docker images | grep bad-idea
 ### Environment Variables
 
 - Why is this a good idea again?
-- _Demo_
+
+_Demo_
+
+```bash
+docker build -t demo:sample-app .
+docker run -t -p 80:8080 -e MESSAGE=stranger demo:sample-app npm start
+```
 
 ### Level up with Docker Compose
 
@@ -174,10 +180,17 @@ See examples/compose-example/dockerfiles/proxy/default.conf
 
 ### Dev time
 
+```yaml
+volumes:
+  - outside:inside # and yes you can have multiple
+  - ./:/app/
+```
 
-### Prduction time
+### Production time
 
+<center>
 Limit their use, but it's ok if you do use it...
+</center>
 
 ## Bits n Pieces
 

@@ -205,8 +205,8 @@
         <span class="kw">docker</span> images <span class="kw">|</span> <span class="kw">grep</span> bad-idea</code></pre></div>
         </section>
         </section>
-        <section id="runtime-config" class="level2">
-        <h2>Runtime Config</h2>
+        <section id="runtime-configuration" class="level2">
+        <h2>Runtime Configuration</h2>
         <section id="factor-app-pattern" class="level3">
         <h3>12 Factor App Pattern</h3>
         <center>
@@ -217,8 +217,10 @@
         <h3>Environment Variables</h3>
         <ul>
         <li>Why is this a good idea again?</li>
-        <li><em>Demo</em></li>
         </ul>
+        <p><em>Demo</em></p>
+        <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> build -t demo:sample-app .
+        <span class="kw">docker</span> run -t -p 80:8080 -e MESSAGE=stranger demo:sample-app npm start</code></pre></div>
         </section>
         <section id="level-up-with-docker-compose" class="level3">
         <h3>Level up with Docker Compose</h3>
@@ -259,10 +261,15 @@
         <h2>Volumes</h2>
         <section id="dev-time" class="level3">
         <h3>Dev time</h3>
+        <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">volumes:</span>
+          <span class="kw">-</span> <span class="fu">outside:</span>inside <span class="co"># and yes you can have multiple</span>
+          <span class="kw">-</span> <span class="fu">./:</span>/app/</code></pre></div>
         </section>
-        <section id="prduction-time" class="level3">
-        <h3>Prduction time</h3>
-        <p>Limit their use, but it's ok if you do use it...</p>
+        <section id="production-time" class="level3">
+        <h3>Production time</h3>
+        <center>
+        Limit their use, but it's ok if you do use it...
+        </center>
         </section>
         </section>
         <section id="bits-n-pieces" class="level2">
