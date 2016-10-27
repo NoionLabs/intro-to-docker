@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  server:
+    build: .
+    command: nodemon --legacy --exec "npm start"
+    volumes:
+      - ./:/app/
+    ports:
+      - 80:8080
+    environment:
+      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=example
+      - POSTGRES_HOST=postgres
+      - DEBUG=1
+      - MESSAGE=World
+    networks:
+      - main
+
+  postgres:
+    image: postgres:9.6.0
+    volumes:
+        - data:/var/lib/postgresql/data
+    # ports:
+    #   - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=example
+    networks:
+      - main
+
+volumes:
+  data:
+
+networks:
+  main:

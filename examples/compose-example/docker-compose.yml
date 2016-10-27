@@ -1,0 +1,120 @@
+version: '2'
+
+services:
+  bobosales:
+    build: ../bobosales.com
+    restart: always
+    environment:
+      - DEBUG=0
+      - LARAVEL_ENV=1
+      - DB_HOST=REDACTED
+      - DB_USER=REDACTED
+      - DB_PASS=REDACTED
+      - DB_NAME=REDACTED
+    networks:
+      - main
+
+  bobosales-cron:
+    build: ../bobosales.com
+    command: ./cron.sh
+    restart: always
+    environment:
+      - DEBUG=0
+      - LARAVEL_ENV=1
+      - DB_HOST=REDACTED
+      - DB_USER=REDACTED
+      - DB_PASS=REDACTED
+      - DB_NAME=REDACTED
+    networks:
+      - main
+
+  images:
+    build: ./dockerfiles/nginx
+    restart: always
+    volumes:
+      - cache:/data
+    networks:
+      - main
+
+  thumbor-1:
+    build: ./dockerfiles/thumbor
+    restart: always
+    command: thumbor -p 8888 -c /conf/thumbor.conf
+    volumes:
+      - cache:/data
+    networks:
+      - main
+
+  thumbor-2:
+    build: ./dockerfiles/thumbor
+    restart: always
+    command: thumbor -p 8888 -c /conf/thumbor.conf
+    volumes:
+      - cache:/data
+    networks:
+      - main
+
+  thumbor-3:
+    build: ./dockerfiles/thumbor
+    restart: always
+    command: thumbor -p 8888 -c /conf/thumbor.conf
+    volumes:
+      - cache:/data
+    networks:
+      - main
+
+  proxy:
+    build: ./dockerfiles/proxy
+    ports:
+      - "80:80"
+    restart: always
+    networks:
+      - main
+
+  shops:
+    build: ../shops.ksl.com
+    restart: always
+    command: apache2-foreground
+    environment:
+      - DEBUG=0
+      - LARAVEL_ENV=testing
+      - DB_HOST=REDACTED
+      - DB_USER=REDACTED
+      - DB_PASS=REDACTED
+      - DB_NAME=REDACTED
+    networks:
+      - main
+
+  shops-cron:
+    build: ../shops.ksl.com
+    restart: always
+    command: ./cron.sh
+    environment:
+      - DEBUG=0
+      - LARAVEL_ENV=testing
+      - DB_HOST=REDACTED
+      - DB_USER=REDACTED
+      - DB_PASS=REDACTED
+      - DB_NAME=REDACTED
+    networks:
+      - main
+
+  test:
+    build: ../shops.ksl.com
+    command: apache2-foreground
+    restart: always
+    environment:
+      - DEBUG=1
+      - LARAVEL_ENV=testing
+      - DB_HOST=REDACTED
+      - DB_USER=REDACTED
+      - DB_PASS=REDACTED
+      - DB_NAME=REDACTED
+    networks:
+      - main
+
+volumes:
+  cache:
+
+networks:
+  main:
