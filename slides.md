@@ -1,6 +1,6 @@
 % Introduction To Docker
 % Jordan Schatz
-% Thursday, 27. October 2016
+% Monday, 31. October 2016
 
 ## About the slides
 
@@ -302,3 +302,11 @@ what project you are on, no matter what platform you are on: `docker-compose up`
 2. Kubernetes
 3. Triton
 4. Many more: AWS container services, Mesos, DC/OS, SmartOS etc.
+
+## Contact
+
+<center>
+Visit us on the web at: www.NoionLabs.com
+<br>
+Thanks!
+</center>
