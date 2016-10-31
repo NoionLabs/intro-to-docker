@@ -7,4 +7,3 @@ RUN npm install -g nodemon
 WORKDIR /app
 ADD . .
 RUN npm install
-
